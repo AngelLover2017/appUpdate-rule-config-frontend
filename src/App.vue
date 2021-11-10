@@ -89,7 +89,7 @@
               重新填写信息
             </a>
             <p>后端 URL：{{ baseinfo.backendurl }}</p>
-            <p>帐号用户名：{{ baseinfo.backendpassword }}</p>
+            <p>帐号用户名：{{ baseinfo.backendusername }}</p>
           </Card>
 
           <Card>
@@ -338,7 +338,9 @@ export default {
             url: _this.baseinfo.backendurl + "/configure_rule/update_ruleStatus",
             params: {
               id : _this.rules[index].id,
-              toStatus: 1 - _this.rules[index].status
+              toStatus: 1 - _this.rules[index].status,
+              username: _this.baseinfo.backendusername,
+              password: this.getsha256(_this.baseinfo.backendusername + _this.baseinfo.backendpassword)
             }
           }).then(res => {
             if (res.data.code === 200) {
@@ -379,7 +381,9 @@ export default {
             url: _this.baseinfo.backendurl + "/configure_rule/update_ruleStatus",
             params: {
               id : _this.rules[index].id,
-              toStatus: 2
+              toStatus: 2,
+              username: _this.baseinfo.backendusername,
+              password: this.getsha256(_this.baseinfo.backendusername + _this.baseinfo.backendpassword)
             }
           }).then(res => {
             if (res.data.code === 200) {
@@ -407,7 +411,11 @@ export default {
       this.axios({
         method: 'post',
         url: _this.baseinfo.backendurl + "/configure_rule",
-        data: _this.submitData
+        data: _this.submitData,
+        params: {
+            username: _this.baseinfo.backendusername,
+            password: this.getsha256(_this.baseinfo.backendusername + _this.baseinfo.backendpassword)
+        }
       }).then(res => {
         if (res.data.code === 200) {
           _this.fetchRules();
@@ -423,6 +431,10 @@ export default {
           content: error
         });
       });
+    },
+    getsha256(password){
+        let sha256 = require("js-sha256").sha256;
+        return sha256(password);
     }
   }
 }
