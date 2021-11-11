@@ -231,6 +231,10 @@ export default {
           key: "status"
         },
         {
+          title: "download_times",
+          key: "download_times"
+        },
+        {
           title: '操作',
           slot: 'action',
           width: 150,
