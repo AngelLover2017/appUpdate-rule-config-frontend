@@ -79,7 +79,7 @@
             <div class="layout-text">APP版本升级管理后台</div>
           </Menu>
         </Header>
-        <Content :style="{padding: '0 50px', height: '2500px'}">
+        <Content :style="{padding: '0 50px'}">
 
           <Card>
             <p slot="title">
@@ -99,7 +99,7 @@
             <a href="#" slot="extra" @click.prevent="isAddRule=true">
               加入规则
             </a>
-            <Table stripe border :columns="ruleColumns" :data="rules">
+            <Table stripe border max-height="650" :columns="ruleColumns" :data="rules" >
               <template slot-scope="{ row, index }" slot="action">
                 <div v-if="rules[index].status >= 0 && rules[index].status <= 1">
                   <Button type="primary" size="small" style="margin-right: 5px" @click="switchStatus(index)">
@@ -163,76 +163,94 @@ export default {
         {
           title: "id",
           key: "id",
-          fixed: "left"
+          fixed: "left",
+          width: 100
         },
         {
           title: "当前状态",
           key: "showStatus",
-          fixed: "left"
+          fixed: "left",
+          width: 100
         },
         {
           title: "aid",
           key: "aid",
+          width: 100
         },
         {
           title: "platform",
-          key: "platform"
+          key: "platform",
+          width: 100
         },
         {
           title: "download_url",
-          key: "download_url"
+          key: "download_url",
+          width: 150
         },
         {
           title: "update_version_code",
-          key: "update_version_code"
+          key: "update_version_code",
+          width: 200
         },
         {
           title: "md5",
-          key: "md5"
+          key: "md5",
+          width: 100
         },
         {
           title: "device_id_list",
-          key: "device_id_list"
+          key: "device_id_list",
+          width: 150
         },
         {
           title: "max_update_version_code",
-          key: "max_update_version_code"
+          key: "max_update_version_code",
+          width: 250
         },
         {
           title: "min_update_version_code",
-          key: "min_update_version_code"
+          key: "min_update_version_code",
+          width: 250
         },
         {
           title: "max_os_api",
-          key: "max_os_api"
+          key: "max_os_api",
+          width: 150
         },
         {
           title: "min_os_api",
-          key: "min_os_api"
+          key: "min_os_api",
+          width: 150
         },
         {
           title: "cpu_arch",
-          key: "cpu_arch"
+          key: "cpu_arch",
+          width: 100
         },
         {
           title: "channel",
-          key: "channel"
+          key: "channel",
+          width: 100
         },
         {
           title: "title",
-          key: "title"
+          key: "title",
+          width: 100
         },
         {
           title: "update_tips",
-          key: "update_tips"
+          key: "update_tips",
+          width: 150
         },
         {
           title: "status",
-          key: "status"
+          key: "status",
+          width: 100
         },
         {
           title: "download_times",
-          key: "download_times"
+          key: "download_times",
+          width: 150
         },
         {
           title: '操作',
@@ -450,13 +468,13 @@ export default {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   color: #2c3e50;
+  height: 100%;
 }
 .layout {
   border: 1px solid #d7dde4;
   background: #f5f7f9;
   position: relative;
   border-radius: 4px;
-  overflow: hidden;
 }
 .layout-text {
   float: left;
@@ -471,5 +489,14 @@ export default {
 }
 .ivu-card {
   margin: 20px 0;
+}
+html {
+  height: 100%;
+}
+body {
+  height: 100%;
+}
+.layout {
+  height: 100%;
 }
 </style>
